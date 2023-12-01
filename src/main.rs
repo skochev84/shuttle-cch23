@@ -1,24 +1,10 @@
-use axum::{extract::Path, http::StatusCode, response::IntoResponse, routing::get, Router};
+use axum::{routing::get, Router};
+use days::{
+    day0::{error_status, hello_world},
+    day1::cube_the_bits,
+};
 
-async fn hello_world() -> &'static str {
-    "Merry Christmas!"
-}
-
-async fn error_status() -> StatusCode {
-    StatusCode::INTERNAL_SERVER_ERROR
-}
-
-async fn cube_the_bits(Path(param): Path<String>) -> impl IntoResponse {
-    param
-        .split('/')
-        .map(|x| x.parse::<i32>().unwrap())
-        .reduce(|acc, e| acc ^ e)
-        .unwrap()
-        .pow(3)
-        .to_string()
-        .into_response()
-}
-
+mod days;
 #[shuttle_runtime::main]
 async fn main() -> shuttle_axum::ShuttleAxum {
     let router = Router::new()
