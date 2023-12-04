@@ -9,3 +9,4 @@ shuttle-axum = { version = "0.34.1", default-features = false, features = ["axum
 shuttle-runtime = "0.34.1"
 tokio = "1.28.2"
 tracing = "0.1.40"
+serde = "1.0.193"
