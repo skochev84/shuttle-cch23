@@ -51,20 +51,11 @@ pub async fn candy(
         .max_by(|a, b| a.speed.total_cmp(&b.speed))
         .unwrap();
 
-    let tallest = payload
-        .iter()
-        .max_by(|a, b| a.height.cmp(&b.height))
-        .unwrap();
+    let tallest = payload.iter().max_by_key(|a| a.height).unwrap();
 
-    let magician = payload
-        .iter()
-        .max_by(|a, b| a.snow_magic_power.cmp(&b.snow_magic_power))
-        .unwrap();
+    let magician = payload.iter().max_by_key(|a| a.snow_magic_power).unwrap();
 
-    let consumer = payload
-        .iter()
-        .max_by(|a, b| a.candies.cmp(&b.candies))
-        .unwrap();
+    let consumer = payload.iter().max_by_key(|a| a.candies).unwrap();
 
     let result = DeerWinners {
         fastest: format!(
